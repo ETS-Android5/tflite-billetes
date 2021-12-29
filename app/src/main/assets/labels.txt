@@ -1,0 +1,3 @@
+0 billete10
+1 billete20
+2 billete30
