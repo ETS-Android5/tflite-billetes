@@ -76,13 +76,13 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
 
 
   public void playAudio(Classifier.Recognition classifier){
-    if(classifier.getTitle().equals("0 billete10")){
+    if(classifier.getTitle().equals("0 billete 10")){
       vectormp[0].start();
-    }else if(classifier.getTitle().equals("1 billete20")){
+    }else if(classifier.getTitle().equals("1 billete 20")){
       vectormp[1].start();
-    }else if(classifier.getTitle().equals("2 billete30")){
+    }else if(classifier.getTitle().equals("2 billete 50")){
       vectormp[2].start();
-    }else if(classifier.getTitle().equals("4 billete100")){
+    }else if(classifier.getTitle().equals("3 billete 100")){
       vectormp[3].start();
     }else{
       vectormp[4].start();

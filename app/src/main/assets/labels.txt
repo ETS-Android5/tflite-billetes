@@ -1,3 +1,5 @@
-0 billete10
-1 billete20
-2 billete30
+0 billete 10
+1 billete 20
+2 billete 50
+3 billete 100
+4 billete 200
