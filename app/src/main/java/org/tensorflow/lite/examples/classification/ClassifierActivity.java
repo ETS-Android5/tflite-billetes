@@ -20,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Size;
@@ -49,11 +50,21 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   private int imageSizeX;
   /** Input image size of the model along y axis. */
   private int imageSizeY;
+  Button play;
+  MediaPlayer mp;
+  MediaPlayer vectormp []= new MediaPlayer[5];
+  int posicion=0;
 
   @Override
   protected void onCreate(final Bundle savedInstanceState){
     super.onCreate(savedInstanceState);
     cameraCapture = findViewById(R.id.CAPTURAR);
+    vectormp[0]=MediaPlayer.create( this, R.raw.diezbs);
+    vectormp[1]=MediaPlayer.create( this, R.raw.veintebs);
+    vectormp[2]=MediaPlayer.create( this, R.raw.cincuentabs);
+    vectormp[3]=MediaPlayer.create( this, R.raw.cienbs);
+    vectormp[4]=MediaPlayer.create( this, R.raw.dos);
+
 
     cameraCapture.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -62,6 +73,23 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
       }
     });
   }
+
+
+  public void playAudio(Classifier.Recognition classifier){
+    if(classifier.getTitle().equals("0 billete10")){
+      vectormp[0].start();
+    }else if(classifier.getTitle().equals("1 billete20")){
+      vectormp[1].start();
+    }else if(classifier.getTitle().equals("2 billete30")){
+      vectormp[2].start();
+    }else if(classifier.getTitle().equals("4 billete100")){
+      vectormp[3].start();
+    }else{
+      vectormp[4].start();
+    }
+    Toast.makeText(this, classifier.getTitle(), Toast.LENGTH_SHORT).show();
+  }
+
   @Override
   protected int getLayoutId() {
     return R.layout.tfe_ic_camera_connection_fragment;
@@ -116,6 +144,7 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
                   new Runnable() {
                     @Override
                     public void run() {
+                      playAudio(results.get(0));
                       showResultsInBottomSheet(results);
                       showFrameInfo(previewWidth + "x" + previewHeight);
                       showCropInfo(imageSizeX + "x" + imageSizeY);
