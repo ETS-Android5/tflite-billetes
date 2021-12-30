@@ -20,9 +20,12 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.List;
@@ -41,11 +44,24 @@ public class ClassifierActivity extends CameraActivity implements OnImageAvailab
   private Integer sensorOrientation;
   private Classifier classifier;
   private BorderedText borderedText;
+  public Button cameraCapture;
   /** Input image size of the model along x axis. */
   private int imageSizeX;
   /** Input image size of the model along y axis. */
   private int imageSizeY;
 
+  @Override
+  protected void onCreate(final Bundle savedInstanceState){
+    super.onCreate(savedInstanceState);
+    cameraCapture = findViewById(R.id.CAPTURAR);
+
+    cameraCapture.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        processImage();
+      }
+    });
+  }
   @Override
   protected int getLayoutId() {
     return R.layout.tfe_ic_camera_connection_fragment;

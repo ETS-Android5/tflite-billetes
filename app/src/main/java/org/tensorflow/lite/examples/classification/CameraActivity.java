@@ -103,7 +103,7 @@ public abstract class CameraActivity extends AppCompatActivity
   private int numThreads = -1;
 
   @Override
-  protected void onCreate(final Bundle savedInstanceState) {
+  protected void onCreate(Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
     super.onCreate(null);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -252,7 +252,7 @@ public abstract class CameraActivity extends AppCompatActivity
             isProcessingFrame = false;
           }
         };
-    processImage();
+//    processImage();
   }
 
   /** Callback for Camera2 API */
@@ -310,7 +310,7 @@ public abstract class CameraActivity extends AppCompatActivity
             }
           };
 
-      processImage();
+//      processImage();
     } catch (final Exception e) {
       LOGGER.e(e, "Exception!");
       Trace.endSection();
